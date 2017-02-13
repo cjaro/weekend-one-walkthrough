@@ -17,5 +17,13 @@ $(document).ready(function(){ //waits for DOM  (HTML & CSS) to completely load
         '<td>' + annualSalary + '</td>' +
       '</tr>'
     );
+
+    //add monthly salary expenses to DOM
+    var newEmployeeMonthlyExpenses = annualSalary / 12;
+    var previousSalaryTotal = $('#monthlyExpenses').text();
+    var totalMonthlyExpenses = parseFloat(previousSalaryTotal) + newEmployeeMonthlyExpenses;
+    $('#monthlyExpenses').text(totalMonthlyExpenses);
+
+
   });
 });
