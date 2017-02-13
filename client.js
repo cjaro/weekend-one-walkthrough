@@ -10,29 +10,36 @@ $(document).ready(function(){ //waits for DOM  (HTML & CSS) to completely load
     // adds new employee row to DOM. Append expects a string, converts to HTML
     $('#employeeTableBody').append(
       '<tr>' +
-      '<td>' + firstName + '</td>' +
-      '<td>' + lastName + '</td>' +
-      '<td>' + idNumber + '</td>' +
-      '<td>' + jobTitle + '</td>' +
-      '<td>' + annualSalary + '</td>' +
-      '<td><button class="deleteEmployeeButton">DELETE ' + firstName + '</button>' + '<td>' +
+        '<td>' + firstName + '</td>' +
+        '<td>' + lastName + '</td>' +
+        '<td>' + idNumber + '</td>' +
+        '<td>' + jobTitle + '</td>' +
+        '<td>' + annualSalary + '</td>' +
+        '<td><button class="deleteEmployeeButton">DELETE ' + firstName + '</button>' + '<td>' +
       '</tr>'
     );
 
     //add monthly salary expenses to DOM
     var newEmployeeMonthlyExpenses = annualSalary / 12;
-    var previousSalaryTotal = $('#monthlyExpenses').text();
-    var totalMonthlyExpenses = parseFloat(previousSalaryTotal) + newEmployeeMonthlyExpenses;
+    var previousMonthlyExpenses = $('#monthlyExpenses').text();
+    var totalMonthlyExpenses = parseFloat(previousMonthlyExpenses) + newEmployeeMonthlyExpenses;
     $('#monthlyExpenses').text(totalMonthlyExpenses);
 
     // clear out input boxes
     $('.employeeFormInput').val('');
   });
 
-
+  // adding a listener for clicking delete employee buttons
   $('#employeeTableBody').on('click', '.deleteEmployeeButton', function(){
-    console.log('Delete Button was clicked!');
-    console.log($(this));
-    $(this).closest('tr').remove();
+    // removing employee salary from total
+    var deletedEmployeeSalary = $(this).parent().prev().text();
+    var deletedEmployeeMonthlyExpenses = deletedEmployeeSalary / 12;
+    var previousMonthlyExpenses = $('#monthlyExpenses').text();
+    var newTotalMonthlyExpenses = previousMonthlyExpenses - deletedEmployeeMonthlyExpenses;
+    $('#monthlyExpenses').text(newTotalMonthlyExpenses);
+    // selects and deletes employee row from table
+    $(this).parent().parent().remove();
   });
 });
+
+// need to get monthly salary, subtract deleted annual salary information, and recalculate new monthly expenses
