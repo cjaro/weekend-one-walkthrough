@@ -15,7 +15,7 @@ $(document).ready(function(){ //waits for DOM  (HTML & CSS) to completely load
         '<td>' + idNumber + '</td>' +
         '<td>' + jobTitle + '</td>' +
         '<td>' + annualSalary + '</td>' +
-        '<td><button class="deleteEmployeeButton">DELETE ' + firstName + '</button>' + '<td>' +
+        '<td><button class="deleteEmployeeButton" data-salary="' + annualSalary + '">DELETE ' + firstName + '</button>' + '<td>' +
       '</tr>'
     );
 
@@ -32,7 +32,7 @@ $(document).ready(function(){ //waits for DOM  (HTML & CSS) to completely load
   // adding a listener for clicking delete employee buttons
   $('#employeeTableBody').on('click', '.deleteEmployeeButton', function(){
     // removing employee salary from total
-    var deletedEmployeeSalary = $(this).parent().prev().text();
+    var deletedEmployeeSalary = $(this).data('salary');
     var deletedEmployeeMonthlyExpenses = deletedEmployeeSalary / 12;
     var previousMonthlyExpenses = $('#monthlyExpenses').text();
     var newTotalMonthlyExpenses = previousMonthlyExpenses - deletedEmployeeMonthlyExpenses;
