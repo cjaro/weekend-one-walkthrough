@@ -7,14 +7,15 @@ $(document).ready(function(){ //waits for DOM  (HTML & CSS) to completely load
     var jobTitle = $('#jobTitle').val();
     var annualSalary = $('#annualSalary').val();
 
-    // adds new employee row to DOM
+    // adds new employee row to DOM. Append expects a string, converts to HTML
     $('#employeeTableBody').append(
       '<tr>' +
-        '<td>' + firstName + '</td>' +
-        '<td>' + lastName + '</td>' +
-        '<td>' + idNumber + '</td>' +
-        '<td>' + jobTitle + '</td>' +
-        '<td>' + annualSalary + '</td>' +
+      '<td>' + firstName + '</td>' +
+      '<td>' + lastName + '</td>' +
+      '<td>' + idNumber + '</td>' +
+      '<td>' + jobTitle + '</td>' +
+      '<td>' + annualSalary + '</td>' +
+      '<td><button class="deleteEmployeeButton">DELETE ' + firstName + '</button>' + '<td>' +
       '</tr>'
     );
 
@@ -23,7 +24,12 @@ $(document).ready(function(){ //waits for DOM  (HTML & CSS) to completely load
     var previousSalaryTotal = $('#monthlyExpenses').text();
     var totalMonthlyExpenses = parseFloat(previousSalaryTotal) + newEmployeeMonthlyExpenses;
     $('#monthlyExpenses').text(totalMonthlyExpenses);
+  });
 
 
+  $('#employeeTableBody').on('click', '.deleteEmployeeButton', function(){
+    console.log('Delete Button was clicked!');
+    console.log($(this));
+    $(this).closest('tr').remove();
   });
 });
