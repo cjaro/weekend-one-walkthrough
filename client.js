@@ -24,6 +24,9 @@ $(document).ready(function(){ //waits for DOM  (HTML & CSS) to completely load
     var previousSalaryTotal = $('#monthlyExpenses').text();
     var totalMonthlyExpenses = parseFloat(previousSalaryTotal) + newEmployeeMonthlyExpenses;
     $('#monthlyExpenses').text(totalMonthlyExpenses);
+
+    // clear out input boxes
+    $('.employeeFormInput').val('');
   });
 
 
