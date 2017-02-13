@@ -10,10 +10,10 @@ You may begin from the code linked above. This contains some input fields and th
 
 The application should first have an input form that collects:
 
-|| The Employee's First and Last name
-|| The Employee's ID Number
-|| The Employee's Job Title
-|| The Employee's Salary (Yearly)
+> - The Employee's First and Last name
+> - The Employee's ID Number
+> - The Employee's Job Title
+> - The Employee's Salary (Yearly)
 
 ##*The form should have a button that:*
 
